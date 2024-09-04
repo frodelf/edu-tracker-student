@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      class="light-style layout-navbar-fixed layout-menu-fixed"
+      layout:decorate="~{blocks/layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${student != null} ? ${student.groupName + ' ' + student.lastName + ' ' + student.name} : '']]</title>
+
+    <script th:inline="javascript">
+        var csrf_token = /*[[${_csrf.token}]]*/ {};
+    </script>
+    <script th:src="@{/js/main/index.js}"></script>
+</head>
+<body>
+<section layout:fragment="content">
+    Hello world!
+</section>
+</body>
+</html>
