@@ -36,13 +36,39 @@
         </div>
     </div>
 
+    <h2 class="mt-4 mb-0">Курси</h2>
     <div id="courses"></div>
     <ul class="pagination pagination-sm m-0 mt-1 mb-5" style="display: flex; justify-content: flex-end"
         id="pagination_container">
     </ul>
 
-
-    <div id="tasks"></div>
+    <h2 class="mt-4 mb-0">Завдання</h2>
+    <div id="tasks">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped linkedRow" id="taskTable"
+                   style="    table-layout: fixed;">
+                <thead>
+                <tr>
+                    <th style="width: 100px">Назва</th>
+                    <th style="width: 200px">Курс</th>
+                    <th style="width: 200px">Статус</th>
+                    <th style="width: 160px"></th>
+                </tr>
+                <tr>
+                    <th><select id="tasks-for-filter" class="for-filter"></select></th>
+                    <th><select id="courses-for-filter" class="for-filter"></select></th>
+                    <th><select id="statuses-for-filter" class="for-filter"></select></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <ul class="pagination pagination-sm m-0 mt-1 mb-5" style="display: flex; justify-content: flex-end"
+        id="pagination_container_for_task">
+    </ul>
 </section>
 </body>
 </html>

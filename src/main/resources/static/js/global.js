@@ -14,13 +14,13 @@ $(document).ready(function () {
         if (inputForFilter.is('[type="checkbox"]')) {
             inputForFilter.prop('checked', false)
         }
-        getPageWithFilter(0)
+        getPageWithFilterForTask(0)
     })
     inputForFilter.each(function() {
         $(this).on('input', function () {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
-                getPageWithFilter(0);
+                getPageWithFilterForTask(0);
             }, 500);
         });
     })
@@ -245,6 +245,8 @@ function translateError(key) {
         .replace('The phone already exists!', 'Такий телефон вже існує')
         .replace('The telegram already exists!', 'Такий телеграм вже існує')
         .replace('The email already exists!', 'Такий електроний адрес вже існує')
+
+
 }
 
 function cleanInputs() {
@@ -295,8 +297,6 @@ function forSelect2(selectId, url, id, text) {
 
 function forSelect2WithSearchAndPageable(selectId, url, selectedItemId) {
     $(selectId).select2({
-        //TODO доробити пошук
-        minimumResultsForSearch: Infinity,
         placeholder: "виберіть об'єкт",
         ajax: {
             type: "Get",
@@ -342,12 +342,17 @@ function validSelect2(select) {
 }
 
 function translateTest(text) {
-    if (text == "CLOSE") text = "Закрите"
-    if (text == "OPEN") text = "Відкрите"
-    if (text == "IN_PROGRESS") text = "В процесі"
-    if (text == "FINISHED") text = "Завершено"
     return text
+        .replace('CLOSE', 'Закрите')
+        .replace('OPEN', 'Відкрите')
+        .replace('IN_PROGRESS', 'В процесі')
+        .replace('FINISHED', 'Завершено')
+        .replace('EVALUATED', 'Оцінено')
+        .replace('IN_PROCESS', 'В процесі')
+        .replace('GRANTED', 'Здано')
+        .replace('OVERDUE', 'Прострочено')
 }
+
 
 function changeFormatDate(inputDate) {
     if (!inputDate) return inputDate

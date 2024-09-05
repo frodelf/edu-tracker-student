@@ -1,6 +1,7 @@
 package ua.kpi.edutrackerstudent.controller;
 
 import io.minio.errors.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class MinioController {
         return ResponseEntity.ok(minioService.getUrl(imageName));
     }
     @GetMapping("/download")
-    public ResponseEntity<byte[]> download(@RequestParam String fileName) throws ServerException, InsufficientDataException, ErrorResponseException, NoSuchAlgorithmException, IOException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+    public ResponseEntity<byte[]> download(@RequestParam @NotNull String fileName) throws ServerException, InsufficientDataException, ErrorResponseException, NoSuchAlgorithmException, IOException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
         return ResponseEntity.ok(minioService.getPhoto(fileName));
     }
 }

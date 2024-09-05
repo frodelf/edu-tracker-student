@@ -1,6 +1,6 @@
 var currentPage;
 
-function updatePagination(currentPage, totalButtons, container) {
+function updatePagination(currentPage, totalButtons, container, method) {
     var containerBlock = document.getElementById(container);
     containerBlock.innerHTML = '';
 
@@ -15,27 +15,27 @@ function updatePagination(currentPage, totalButtons, container) {
         link = document.createElement('span');
         link.innerHTML = "&#10094;";
         if(currentPage == 0)li.classList.add("disabled")
-        else li.setAttribute("onclick", `getPageWithFilter(${currentPage - 1})`);
+        else li.setAttribute("onclick", method+`(${currentPage - 1})`);
         li.appendChild(link);
         pagination.appendChild(li);
     }
     if (totalButtons <= 7) {
         for (var i = 0; i <= (totalButtons - 1); i++) {
-            li = createPaginationItem(i);
+            li = createPaginationItem(i, method);
             if (i == currentPage) {
                 li.classList.add("active");
             }
             pagination.appendChild(li);
         }
     } else {
-        li = createPaginationItem(0);
+        li = createPaginationItem(0, method);
         if (0 == currentPage) {
             li.classList.add("active");
         }
         pagination.appendChild(li);
         if (currentPage < 3) {
             for (var i = 1; i < 4; i++) {
-                li = createPaginationItem(i);
+                li = createPaginationItem(i, method);
                 if (i == currentPage) {
                     li.classList.add("active");
                 }
@@ -51,7 +51,7 @@ function updatePagination(currentPage, totalButtons, container) {
             }
             pagination.appendChild(li);
             for (var i = totalButtons - 4; i <= totalButtons - 2; i++) {
-                li = createPaginationItem(i);
+                li = createPaginationItem(i, method);
                 if (i == currentPage) {
                     li.classList.add("active");
                 }
@@ -65,7 +65,7 @@ function updatePagination(currentPage, totalButtons, container) {
             pagination.appendChild(li);
             for (var i = currentPage - 1; i <= parseInt(currentPage) + 1; i++) {
 
-                li = createPaginationItem(i);
+                li = createPaginationItem(i, method);
                 if (i == currentPage) {
                     li.classList.add("active");
                 }
@@ -78,7 +78,7 @@ function updatePagination(currentPage, totalButtons, container) {
             pagination.appendChild(li);
         }
         if ((currentPage + 1) <= totalButtons) {
-            li = createPaginationItem(totalButtons - 1);
+            li = createPaginationItem(totalButtons - 1, method);
             if (i == currentPage) {
                 li.classList.add("active");
             }
@@ -95,7 +95,7 @@ function updatePagination(currentPage, totalButtons, container) {
         link.innerHTML = "&#10095;";
         li.appendChild(link);
         if(totalButtons == (currentPage + 1))li.classList.add("disabled")
-        else li.setAttribute("onclick", `getPageWithFilter(${currentPage + 1})`);
+        else li.setAttribute("onclick", method+`(${currentPage + 1})`);
         pagination.appendChild(li);
     }
 
@@ -111,7 +111,7 @@ function updatePagination(currentPage, totalButtons, container) {
     containerBlock.appendChild(block)
 }
 
-function createPaginationItem(pageNumber) {
+function createPaginationItem(pageNumber, method) {
     var li = document.createElement('li');
     li.classList.add('page-item');
     if (parseInt(pageNumber) === parseInt(currentPage)) {
@@ -122,7 +122,7 @@ function createPaginationItem(pageNumber) {
     button.innerText = pageNumber + 1;
     li.appendChild(button);
 
-    button.setAttribute("onclick", `getPageWithFilter(${pageNumber})`)
+    button.setAttribute("onclick", method+`(${pageNumber})`)
     return li;
 }
 
