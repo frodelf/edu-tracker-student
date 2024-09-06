@@ -4,6 +4,7 @@ import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import ua.kpi.edutrackerentity.entity.Course;
+import ua.kpi.edutrackerstudent.dto.course.CourseResponseForView;
 import ua.kpi.edutrackerstudent.dto.course.CourseResponseViewAll;
 import ua.kpi.edutrackerstudent.service.MinioService;
 
@@ -30,5 +31,13 @@ public class CourseMapper {
                 courses.getPageable(),
                 courses.getTotalElements()
         );
+    }
+    public CourseResponseForView toResponseForView(Course course) {
+        CourseResponseForView courseResponseForView = new CourseResponseForView();
+        courseResponseForView.setId(course.getId());
+        courseResponseForView.setGoal(course.getGoal());
+        courseResponseForView.setName(course.getName());
+        courseResponseForView.setImage(course.getImage());
+        return courseResponseForView;
     }
 }

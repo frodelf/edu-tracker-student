@@ -95,4 +95,20 @@ public class StudentTaskServiceImpl implements StudentTaskService {
         studentsTask.setMyWork(minioService.putMultipartFile(file));
         save(studentsTask);
     }
+    @Override
+    public Long countStudentMarkByCourseId(Long courseId) {
+        return studentsTaskRepository.countMarkByStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId);
+    }
+    @Override
+    public Long countAllByCourseId(Long courseId) {
+        return studentsTaskRepository.countByStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId);
+    }
+    @Override
+    public Long countAllDoneTaskByCourseId(Long courseId) {
+        return studentsTaskRepository.countByStatusesAndStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId, List.of(StatusStudentsTask.EVALUATED));
+    }
+    @Override
+    public Long countAllNotDoneTaskByCourseId(Long courseId) {
+        return studentsTaskRepository.countByStatusesAndStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId, List.of(StatusStudentsTask.IN_PROCESS));
+    }
 }

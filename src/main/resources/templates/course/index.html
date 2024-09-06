@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      class="light-style layout-navbar-fixed layout-menu-fixed"
+      layout:decorate="~{blocks/layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${course.name}]]</title>
+
+    <script th:inline="javascript">
+        var csrf_token = /*[[${_csrf.token}]]*/ {};
+        var course = /*[[${course}]]*/ {};
+    </script>
+    <script th:src="@{/js/course/index.js}"></script>
+</head>
+<body>
+<section layout:fragment="content">
+    <div class="d-flex justify-content-between mt-4">
+        <h4>[[${course.name}]]</h4>
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="d-flex align-items-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/}">Головна</a></li>
+                <li class="breadcrumb-item active" aria-current="page">[[${course.name}]]</li>
+            </ol>
+        </nav>
+    </div>
+    <hr style="margin-top: 0"/>
+    <div class="card" id="content-form">
+        <div class="card-body">
+            <div class="card-body">
+                <img th:src="@{/img/default.png}" id="course-image">
+            </div>
+            <h2>Ціль курсу</h2>
+            <div id="course-goal">
+            </div>
+            <center><h2>Статистика</h2></center>
+            <div id="course-statistic"></div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

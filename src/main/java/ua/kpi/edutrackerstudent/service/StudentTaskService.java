@@ -17,4 +17,8 @@ public interface StudentTaskService {
     StudentsTask save(StudentsTask studentsTask);
     void cancelWork(Long studentTaskId);
     void sendWork(Long id, MultipartFile file);
+    Long countStudentMarkByCourseId(Long courseId);
+    Long countAllByCourseId(Long courseId);
+    Long countAllDoneTaskByCourseId(Long courseId);
+    Long countAllNotDoneTaskByCourseId(Long courseId);
 }
