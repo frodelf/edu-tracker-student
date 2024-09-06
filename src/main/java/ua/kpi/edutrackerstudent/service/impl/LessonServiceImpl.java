@@ -19,6 +19,6 @@ public class LessonServiceImpl implements LessonService {
     private final LessonMapper lessonMapper = new LessonMapper();
     @Override
     public List<BeginningLessonResponse> getAllBeginningLessons() {
-        return lessonMapper.toBeginningLessonResponseList(lessonRepository.findAllByCourseInAndStatus(studentService.getAuthStudentForGlobal().getCourses(), StatusLesson.IN_PROGRESS));
+        return lessonMapper.toBeginningLessonResponseList(lessonRepository.findAllByCourseInAndStatus(studentService.getAuthStudent().getCourses(), StatusLesson.IN_PROGRESS));
     }
 }

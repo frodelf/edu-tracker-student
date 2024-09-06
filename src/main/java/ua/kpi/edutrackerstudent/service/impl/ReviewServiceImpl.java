@@ -13,6 +13,6 @@ public class ReviewServiceImpl implements ReviewService {
     private final StudentService studentService;
     @Override
     public Long countAllVisitedLessonByCourseId(Long courseId) {
-        return reviewRepository.countByStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId);
+        return reviewRepository.countByStudentIdAndCourseId(studentService.getAuthStudent().getId(), courseId);
     }
 }

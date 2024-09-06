@@ -20,7 +20,6 @@ import ua.kpi.edutrackerstudent.service.MinioService;
 import ua.kpi.edutrackerstudent.service.StudentService;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +31,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Page<CourseResponseViewAll> getAll(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Order.desc("id")));
-        return courseMapper.toDtoListForView(courseRepository.findAllByStudentsAndStatusCourse(List.of(studentService.getAuthStudentForGlobal()), StatusCourse.ACTIVE, pageable), minioService);
+        return courseMapper.toDtoListForView(courseRepository.findAllByStudentsAndStatusCourse(List.of(studentService.getAuthStudent()), StatusCourse.ACTIVE, pageable), minioService);
     }
     @Override
     public CourseResponseForView getByIdForView(Long id) {
@@ -48,7 +47,7 @@ public class CourseServiceImpl implements CourseService {
     }
     @Override
     public Boolean isOnCourse(Course course) {
-        Student student = studentService.getAuthStudentForGlobal();
+        Student student = studentService.getAuthStudent();
         if(!student.getCourses().contains(course)){
             throw new AccessDeniedException("You don't have access to this course");
         }

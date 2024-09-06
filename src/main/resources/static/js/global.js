@@ -5,8 +5,6 @@ var pageSize = 10
 var nameForAvatar = studentAuth? studentAuth.lastName.charAt(0) + studentAuth.name.charAt(0) : null
 
 $(document).ready(function () {
-    console.log(nameForAvatar)
-    console.log(studentAuth)
     var inputForFilter = $('.for-filter')
     let timeout = null
     $('#clean-all-input-for-filtering').click(function () {
@@ -65,24 +63,12 @@ $(document).ready(function () {
         })
     })
 
-    $.ajax({
-        url: contextPath + 'minio/get-image',
-        method: 'GET',
-        data:{
-            imageName: studentAuth.image
-        },
-        success: function (response) {
-            console.log(response)
-            if(response){
-                $(".avatar-image").attr("src", response)
-            }
-            else {
-                $('.avatar').html(`
+    if(studentAuth.image)$(".avatar-image").attr("src", studentAuth.image)
+    else {
+        $('.avatar').html(`
                      <span class="avatar-initial rounded-circle bg-primary">${nameForAvatar}</span>
                 `)
-            }
-        },
-    })
+    }
 })
 
 function showLoader(blockId) {

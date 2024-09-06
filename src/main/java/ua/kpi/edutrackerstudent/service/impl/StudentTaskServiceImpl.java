@@ -37,13 +37,13 @@ public class StudentTaskServiceImpl implements StudentTaskService {
     @Override
     public Page<StudentsTaskResponseForViewAll> getAll(StudentsTaskRequestForFilter studentsTaskRequestForFilter) {
         Pageable pageable = PageRequest.of(studentsTaskRequestForFilter.getPage(), studentsTaskRequestForFilter.getPageSize(), Sort.by(Sort.Order.desc("id")));
-        Specification<StudentsTask> specification = new StudentsTaskSpecification(studentsTaskRequestForFilter, studentService.getAuthStudentForGlobal().getId());
+        Specification<StudentsTask> specification = new StudentsTaskSpecification(studentsTaskRequestForFilter, studentService.getAuthStudent().getId());
         return studentsTaskMapper.toResponseForViewList(studentsTaskRepository.findAll(specification, pageable));
     }
     @Override
     public Page<Map<String, String>> getAllForTaskForSelect(ForSelect2Dto forSelect2Dto) {
         Pageable pageable = PageRequest.of(forSelect2Dto.getPage(), forSelect2Dto.getSize(), Sort.by(Sort.Order.desc("id")));
-        Page<Task> tasks = studentsTaskRepository.findAllTaskByTaskNameLikeAndStudentId(forSelect2Dto.getQuery(), studentService.getAuthStudentForGlobal().getId(), pageable);
+        Page<Task> tasks = studentsTaskRepository.findAllTaskByTaskNameLikeAndStudentId(forSelect2Dto.getQuery(), studentService.getAuthStudent().getId(), pageable);
         List<Map<String, String>> list = new ArrayList<>();
         for (Task task : tasks.getContent()) {
             Map<String, String> map = new HashMap<>();
@@ -56,7 +56,7 @@ public class StudentTaskServiceImpl implements StudentTaskService {
     @Override
     public Page<Map<String, String>> getAllForCourseForSelect(ForSelect2Dto forSelect2Dto) {
         Pageable pageable = PageRequest.of(forSelect2Dto.getPage(), forSelect2Dto.getSize(), Sort.by(Sort.Order.desc("id")));
-        Page<Course> courses = studentsTaskRepository.findAllCourseByCourseNameLikeAndStudentId(forSelect2Dto.getQuery(), studentService.getAuthStudentForGlobal().getId(), pageable);
+        Page<Course> courses = studentsTaskRepository.findAllCourseByCourseNameLikeAndStudentId(forSelect2Dto.getQuery(), studentService.getAuthStudent().getId(), pageable);
         List<Map<String, String>> list = new ArrayList<>();
         for (Course course : courses.getContent()) {
             Map<String, String> map = new HashMap<>();
@@ -97,18 +97,18 @@ public class StudentTaskServiceImpl implements StudentTaskService {
     }
     @Override
     public Long countStudentMarkByCourseId(Long courseId) {
-        return studentsTaskRepository.countMarkByStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId);
+        return studentsTaskRepository.countMarkByStudentIdAndCourseId(studentService.getAuthStudent().getId(), courseId);
     }
     @Override
     public Long countAllByCourseId(Long courseId) {
-        return studentsTaskRepository.countByStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId);
+        return studentsTaskRepository.countByStudentIdAndCourseId(studentService.getAuthStudent().getId(), courseId);
     }
     @Override
     public Long countAllDoneTaskByCourseId(Long courseId) {
-        return studentsTaskRepository.countByStatusesAndStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId, List.of(StatusStudentsTask.EVALUATED));
+        return studentsTaskRepository.countByStatusesAndStudentIdAndCourseId(studentService.getAuthStudent().getId(), courseId, List.of(StatusStudentsTask.EVALUATED));
     }
     @Override
     public Long countAllNotDoneTaskByCourseId(Long courseId) {
-        return studentsTaskRepository.countByStatusesAndStudentIdAndCourseId(studentService.getAuthStudentForGlobal().getId(), courseId, List.of(StatusStudentsTask.IN_PROCESS));
+        return studentsTaskRepository.countByStatusesAndStudentIdAndCourseId(studentService.getAuthStudent().getId(), courseId, List.of(StatusStudentsTask.IN_PROCESS));
     }
 }
