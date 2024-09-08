@@ -8,7 +8,20 @@ $(document).ready(function () {
     forSelect2WithSearchAndPageable('#courses-for-filter', contextPath+'student-task/get-all-course-for-select')
     forSelect2('#statuses-for-filter', contextPath+'enum/get-task-status')
 })
-
+function sendMain(lessonId, url){
+    window.open(url, '_blank')
+    $.ajax({
+        url: contextPath + 'present/send',
+        type: 'POST',
+        headers: {'X-XSRF-TOKEN': csrf_token},
+        data: {
+            studentId: studentAuth.id,
+            lessonId: lessonId
+        },
+        success: function (request) {
+        },
+    })
+}
 function getPageWithFilterForCourse(page) {
     showLoader('courses')
     this.page = page
@@ -100,7 +113,7 @@ function getBeginningLessons() {
 
 
                     var cell2 = newRow.insertCell(2);
-                    cell2.innerHTML = `<center><a href="${object.link}"><i class="fa-solid fa-link"></i></a></center>`;
+                    cell2.innerHTML = `<center><a href="javascript:void()" onclick="sendMain(${object.id}, '${object.link}')"><i class="fa-solid fa-link"></i></a></center>`;
                 }
             }
         },
