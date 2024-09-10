@@ -28,5 +28,5 @@ server:
 minio:
   accessKey: admin
   secretKey: password
-  endpoint: http://slj.demodev.cc:4401
+  endpoint: http://minio:9000
 

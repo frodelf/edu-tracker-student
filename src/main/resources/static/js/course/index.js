@@ -7,7 +7,7 @@ $(document).ready(function () {
                 imageName: course.image
             },
             success: function (url) {
-                $("course-image").attr('src', url)
+                $("#course-image").attr('src', url)
             }
         })
     }
