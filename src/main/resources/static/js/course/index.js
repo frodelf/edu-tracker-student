@@ -26,8 +26,6 @@ $(document).ready(function () {
 })
 
 function addBlock(statistics){
-    console.log(statistics)
-    console.log(statistics.status)
     var statistic = $('#course-statistic');
     if (statistic.html()) statistic.html('')
     if(statistic.status){

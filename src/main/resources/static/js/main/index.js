@@ -86,7 +86,6 @@ function getBeginningLessons() {
         type: "Get",
         url: contextPath + 'lesson/get-beginning',
         success: function (objects) {
-            console.log(objects)
             var table = document.getElementById("lesson-table");
             var tbody = table.querySelector("tbody");
             $('#lesson-table tbody').empty();

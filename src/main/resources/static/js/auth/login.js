@@ -1,14 +1,6 @@
-//TODO Видалити це
-var fullContextPath = 'http://localhost:8082/edu-tracker/student';
+var fullContextPath = 'http://slj.demodev.cc:7657/edu-tracker/student/';
 
 $(document).ready(function () {
-    //TODO Видалити це///////////////////////////////
-    $("#username").val("derkach.denis@lll.kpi.ua")
-    $("#password").val("11489389")
-    $("#login").click()
-    /////////////////////////////////////////////////
-
-
     if(window.location.href.includes("error")){
         $("#password-eye").css("border-color", "#ff0000")
         $("#password").css("border-color", "#ff0000")

@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ua.kpi.edutrackerentity.entity.Professor;
 import ua.kpi.edutrackerentity.entity.Student;
 
 import java.util.Collection;
