@@ -16,8 +16,8 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
   rabbitmq:
-    host: slj.demodev.cc
-    port: 4415
+    host: slj-edutracker-rabbit
+    port: 5672
     username: root
     password: 1234
 
