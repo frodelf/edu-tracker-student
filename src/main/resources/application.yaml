@@ -29,4 +29,3 @@ minio:
   accessKey: admin
   secretKey: password
   endpoint: http://minio:9000
-
