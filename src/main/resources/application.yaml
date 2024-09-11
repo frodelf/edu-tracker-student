@@ -20,11 +20,9 @@ spring:
     port: 5672
     username: root
     password: 1234
-
 server:
   servlet:
     context-path: /edu-tracker/student/
-
 minio:
   accessKey: admin
   secretKey: password
