@@ -42,9 +42,10 @@ function addBlock(statistics){
             <div class="card drag-item  mb-lg-0 mb-6">
                 <div class="card-body text-center">
                 <h2>
-                    <i class="fa-solid fa-users" style="color: #B197FC;"></i>                                    
+                    <i class="fa-solid fa-user-graduate" style="color: #B197FC;"></i>                                    
                 </h2>
-                <h4>${statistics.mark || ''}</h4>
+                <h4>Оцінка</h4>
+                <h5>${statistics.mark || ''}</h5>
                 </div>
             </div>
         </div>
@@ -52,7 +53,7 @@ function addBlock(statistics){
             <div class="card drag-item  mb-lg-0 mb-6">
                 <div class="card-body text-center">
                 <h2>
-                    <i class="fa-solid fa-users" style="color: #B197FC;"></i>                                    
+                    <i class="fa-solid fa-list-check" style="color: #B197FC;"></i>                                    
                 </h2>
                 <h4>Завдання</h4>
                 <h5>
@@ -71,7 +72,7 @@ function addBlock(statistics){
             <div class="card drag-item  mb-lg-0 mb-6">
                 <div class="card-body text-center">
                 <h2>
-                    <i class="fa-solid fa-users" style="color: #B197FC;"></i>                                    
+                    <i class="fa-solid fa-person-chalkboard" style="color: #B197FC;"></i>                                    
                 </h2>
                 <h4>Відвідані заняття</h4>
                 <h5>${statistics.lessons || ''}</h5>
@@ -82,9 +83,9 @@ function addBlock(statistics){
             <div class="card drag-item  mb-lg-0 mb-6">
                 <div class="card-body text-center">
                 <h2>
-                    <i class="fa-solid fa-users" style="color: #B197FC;"></i>                                    
+                    <i class="fa-solid fa-book" style="color: #B197FC;"></i>                                    
                 </h2>
-                <h4>Оцінка</h4>
+                <h4>Література</h4>
                 <h5>${statistics.literatures || ''}</h5>
                 </div>
             </div>

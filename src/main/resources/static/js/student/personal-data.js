@@ -2,7 +2,7 @@ $(document).ready(function () {
     showLoader("content-form")
     $('#avatar-img').html(nameForAvatar)
     $.ajax({
-        url: fullContextPath + 'get-personal-data',
+        url: contextPath + 'get-personal-data',
         method: 'GET',
         success: function (student) {
             $('#phone').val(student.phone)
