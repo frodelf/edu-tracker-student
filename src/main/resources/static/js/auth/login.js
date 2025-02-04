@@ -1,4 +1,5 @@
-var fullContextPath = 'http://slj.demodev.cc:7657/edu-tracker/student/';
+var fullContextPath = 'http://'+host+':'+port+contextPath
+
 
 $(document).ready(function () {
     if(window.location.href.includes("error")){
