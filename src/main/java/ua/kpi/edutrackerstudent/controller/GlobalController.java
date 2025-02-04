@@ -10,7 +10,7 @@ import ua.kpi.edutrackerstudent.service.StudentService;
 @ControllerAdvice
 @RequiredArgsConstructor
 public class GlobalController {
-    @Value("${server.servlet.host}")
+    @Value("${server.host}")
     private String host;
     @Value("${server.servlet.context-path}")
     private String contextPath;
