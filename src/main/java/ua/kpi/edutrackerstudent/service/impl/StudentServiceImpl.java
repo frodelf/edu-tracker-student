@@ -4,10 +4,12 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.bouncycastle.crypto.generators.BCrypt;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ua.kpi.edutrackerentity.entity.Student;
 import ua.kpi.edutrackerstudent.dto.student.StudentRequestForPersonalData;
@@ -82,5 +84,12 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Student with id = "+id+" not found")
         );
+    }
+    @Override
+    @Transactional
+    public void changePassword(String password) {
+        Student student = getAuthStudent();
+        student.setPassword(new BCryptPasswordEncoder().encode(password));
+        save(student);
     }
 }

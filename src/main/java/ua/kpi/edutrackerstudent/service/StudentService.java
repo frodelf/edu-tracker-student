@@ -13,4 +13,5 @@ public interface StudentService {
     void updatePersonalData(StudentRequestForPersonalData studentRequestForPersonalData);
     Student save(Student student);
     Student getById(Long id);
+    void changePassword(String password);
 }
