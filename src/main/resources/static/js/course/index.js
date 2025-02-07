@@ -86,10 +86,51 @@ function addBlock(statistics){
                     <i class="fa-solid fa-book" style="color: #B197FC;"></i>                                    
                 </h2>
                 <h4>Література</h4>
-                <h5>${statistics.literatures || ''}</h5>
+                <h5><a href="javascript:void(0)" onclick="getAllLiterature()">${statistics.literatures || ''}</a></h5>
                 </div>
             </div>
         </div>
     </div>
     `)
+}
+function showAllLiterature(literatures){
+    var tablesRow = ''
+    for (const literature of literatures) {
+        tablesRow+=`<tr><td><a href="${literature.link}" target="_blank">${literature.name}</a></td></tr>`
+    }
+    if($('#allLiterature').html())$('#allLiterature').remove()
+    var modalBlock = document.createElement('div');
+    modalBlock.innerHTML = `
+    <div class="modal fade" id="allLiterature" tabindex="-1" aria-labelledby="modalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalScrollableTitle">Literatures</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-hover table-striped linkedRow">
+          ${tablesRow}
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    `
+    document.body.appendChild(modalBlock);
+    $('#allLiterature').modal('show');
+}
+
+function getAllLiterature(){
+    $.ajax({
+        type: "get",
+        url: contextPath + 'literature/get-all-by-course-id/' + course.id,
+        success: function (literatures) {
+            showAllLiterature(literatures)
+        }
+    })
 }
