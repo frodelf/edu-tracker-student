@@ -1,10 +1,11 @@
 var messageForDelete = "Об'єкт успішно видалено"
 var messageForSave = "Об'єкт успішно збережено"
 var pageSize = 10
+var fullContextPath
 var nameForAvatar = studentAuth? studentAuth.lastName.charAt(0) + studentAuth.name.charAt(0) : null
 
 $(document).ready(function () {
-    var fullContextPath = 'http://'+host+':'+port+contextPath
+    fullContextPath = 'http://'+host+':'+port+contextPath
     var inputForFilter = $('.for-filter')
     let timeout = null
     $('#clean-all-input-for-filtering').click(function () {
