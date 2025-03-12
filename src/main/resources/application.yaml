@@ -23,8 +23,8 @@ spring:
 server:
   servlet:
     context-path: /edu-tracker/student/
-  host: localhost
-  port: 8082
+  host: slj.demodev.cc
+  port: 7657
 minio:
   accessKey: admin
   secretKey: password
