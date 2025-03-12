@@ -1,6 +1,9 @@
-var fullContextPath = 'http://slj.demodev.cc:7657/edu-tracker/student/';
+var fullContextPath
+
 
 $(document).ready(function () {
+    fullContextPath = 'http://'+host+':'+port+contextPath
+
     if(window.location.href.includes("error")){
         $("#password-eye").css("border-color", "#ff0000")
         $("#password").css("border-color", "#ff0000")

@@ -2,9 +2,9 @@ spring:
   application:
     name: edu-tracker-student
   datasource:
-    url: ${DB_HOST}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/edutracker
+    username: root
+    password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     generate-ddl: true
@@ -16,14 +16,16 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
   rabbitmq:
-    host: slj-edutracker-rabbit
-    port: 5672
+    host: localhost
+    port: 7653
     username: root
     password: 1234
 server:
   servlet:
     context-path: /edu-tracker/student/
+  host: localhost
+  port: 8082
 minio:
   accessKey: admin
   secretKey: password
-  endpoint: http://minio:9000
+  endpoint: http://localhost:7651

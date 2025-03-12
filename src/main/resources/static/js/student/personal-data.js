@@ -77,3 +77,61 @@ function updatePersonalData() {
         }
     })
 }
+function changePassword(){
+    if($('#ModalForChangePassword').html())$('#ModalForChangePassword').remove()
+    var modalBlock = document.createElement('div');
+    modalBlock.innerHTML = `
+    <div class="modal fade" id="ModalForChangePassword" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Змінити пароль</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Новий пароль
+                        <input id="password" class="mb-4 form-control" type="password">
+                        Повтор пароля
+                        <input id="password-rep" class="form-control" type="password">
+                        <div class="row">
+                            <center>
+                                <button class="btn btn-outline-primary mt-3" onclick="changePasswordSubmit($('#password').val(), $('#password-rep').val())">Змінити</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `
+    document.body.appendChild(modalBlock);
+    $('#ModalForChangePassword').modal('show');
+}
+
+function changePasswordSubmit(password1, password2){
+    if(password1 != password2){
+        showErrorToast("Паролі не співпадають")
+        return
+    }
+    showLoader("ModalForChangePassword")
+
+    $.ajax({
+        type: "post",
+        url: contextPath + 'change-password?password='+password1,
+        headers: {'X-XSRF-TOKEN': csrf_token},
+        contentType: false,
+        processData: false,
+        success: function () {
+            showSuccessToast("Пароль змінений")
+        },
+        error: function (xhr, status, error) {
+            if (xhr.status === 400) {
+                showErrorToast("Пароль має складатись з 8 символів")
+            } else {
+                console.error('Помилка відправки файлів на сервер:', error);
+            }
+        },
+        complete: function (xhr, status) {
+            hideLoader("ModalForChangePassword")
+        }
+    })
+}
