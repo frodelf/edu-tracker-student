@@ -66,4 +66,4 @@ jobs:
               docker rm slj-edutracker-student || true
             fi
             docker pull ${{ secrets.secret_name_docker_hub_lower_case }}/edu-tracker-student:latest
-            docker run -d -p 7657:8080 --name slj-edutracker-student --network slj-edutracker-network ${{ secrets.secret_name_docker_hub_lower_case }}/edu-tracker-student:latest
+            docker run -d -p 7657:7657 --name slj-edutracker-student --network slj-edutracker-network ${{ secrets.secret_name_docker_hub_lower_case }}/edu-tracker-student:latest
